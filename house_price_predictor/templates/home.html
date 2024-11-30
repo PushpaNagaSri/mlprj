@@ -1,0 +1,108 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predictor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            padding: 6px 12px; /* Reduced padding to make the button smaller */
+            font-size: 16px; /* Font size remains unchanged */
+            height: 40px; /* Fixed height for consistency */
+        }
+        footer {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        /* Flexbox for side-by-side buttons */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Optional: Adds space between buttons */
+        }
+        .button-group .btn-custom {
+            width: 48%; /* Make buttons take up almost half width each */
+        }
+        .btn-logout {
+            background-color: #28a745; /* Green color */
+            color: white; /* White text */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn-logout:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        .btn-predict {
+            background-color: #007bff; /* Blue color */
+            color: white; /* White text */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn-predict:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Adjust the width and font size of login and register buttons */
+        .btn-info, .btn-success {
+            padding: 8px 16px;  /* Adjusted padding */
+            font-size: 18px;    /* Increased font size */
+            height: 40px;       /* Set height for consistency */
+            width: 80%;         /* Reduced width to 80% */
+            border-radius: 5px; /* Rounded corners */
+            margin: 10px auto;  /* Centered buttons */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>House Price Prediction</h1>
+
+        {% if user.is_authenticated %}
+            <!-- If the user is authenticated, show the prediction form -->
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <!-- Predict button inside flexbox layout -->
+                <div class="button-group mt-4">
+                    <button type="submit" class="btn btn-predict btn-custom">Predict</button>
+                    <a href="{% url 'logout' %}" class="btn btn-logout btn-custom">Logout</a>
+                </div>
+            </form>
+        {% else %}
+            <!-- If the user is not authenticated, show login and register options -->
+            <a href="{% url 'login' %}" class="btn btn-info btn-custom btn-block mt-4">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-success btn-custom btn-block mt-4">Register</a>
+        {% endif %}
+
+        <footer>
+            <small>&copy; 2024 House Price Predictor. All rights reserved.</small>
+        </footer>
+    </div>
+</body>
+</html>

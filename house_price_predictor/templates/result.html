@@ -1,0 +1,88 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 1.8rem; /* Reduced font size */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .alert {
+            font-size: 1rem; /* Reduced font size for result */
+            padding: 20px;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            border-radius: 8px;
+        }
+        .alert h2 {
+            font-size: 1.5rem; /* Reduced font size */
+        }
+        .alert p {
+            font-size: 0.9rem; /* Reduced font size for description */
+        }
+        .btn-custom {
+            padding: 12px 20px;  /* Adjusted padding for smaller buttons */
+            font-size: 14px; /* Reduced font size */
+            width: 48%; /* Make buttons equal in size */
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Adds space between buttons */
+        }
+        .btn-logout {
+            background-color: #28a745; /* Green background color for Logout */
+            color: white;  /* White text */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn-logout:hover {
+            background-color: #218838; /* Darker green when hovered */
+        }
+        footer {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Predicted House Price</h1>
+
+        <div class="alert alert-success text-center">
+            <h2>${{ prediction|floatformat:2 }}</h2>
+            <p>We have calculated the predicted price of the house based on the information you provided.</p>
+        </div>
+
+        <!-- Buttons side by side with Predict Again on the left and Logout on the right -->
+        <div class="button-group mt-4">
+            <a href="/" class="btn btn-primary btn-custom">Predict Again</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="btn btn-logout btn-custom">Logout</a>
+            {% endif %}
+        </div>
+
+        <footer>
+            <small>&copy; 2024 House Price Predictor. All rights reserved.</small>
+        </footer>
+    </div>
+</body>
+</html>

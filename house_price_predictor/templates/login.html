@@ -1,0 +1,69 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap 4.5.2 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 500px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .btn-custom {
+            padding: 8px 16px; /* Reduced padding for smaller height */
+            font-size: 14px;   /* Reduced font size */
+            width: 45%;        /* Set width to 45% for both buttons */
+            margin-top: 10px;  /* Space between buttons */
+        }
+        .button-group {
+            display: flex;             /* Align buttons horizontally */
+            justify-content: space-between;  /* Space out the buttons */
+            gap: 10px;                /* Adds space between buttons */
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        footer {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary btn-custom">Login</button>
+                <a href="{% url 'register' %}" class="btn btn-secondary btn-custom">Register</a>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <small>&copy; 2024 House Price Predictor. All rights reserved.</small>
+    </footer>
+</body>
+</html>

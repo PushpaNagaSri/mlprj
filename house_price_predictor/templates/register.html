@@ -1,0 +1,74 @@
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- Bootstrap 4.5.2 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            font-family: 'Arial', sans-serif;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 500px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 600; /* Reduced font-weight for a less bold appearance */
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+        .form-group label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+        .btn-custom {
+            padding: 8px 16px; /* Reduced padding for smaller button */
+            font-size: 14px; /* Reduced font size */
+            background-color: #007bff; /* Blue color for button */
+            color: white;  /* White text color */
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .footer {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-custom">Create Account</button>
+        </form>
+        <div class="footer">
+            <small>&copy; 2024 House Price Predictor. All rights reserved.</small>
+        </div>
+    </div>
+</body>
+</html>
